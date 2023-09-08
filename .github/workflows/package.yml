@@ -50,6 +50,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: |
-          PACKAGE_NAME
+      run: echo $PACKAGE_NAME
+      # with:
+        # files: |
+          # PACKAGE_NAME
