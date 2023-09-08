@@ -7,7 +7,7 @@ on:
   push:
     tags:
       - v[0-9]+.*
-    # branches: ["main"]
+    branches: ["main"]
 
 env:
   CARGO_TERM_COLOR: always
@@ -49,8 +49,7 @@ jobs:
         PACKAGE_NAME=`fpm -s dir -t deb -n hello-rust -v 1.0.1 target/release/hello-rust | ruby -e 'puts (eval ARGF.read)[:path]'`
     - name: Release
       uses: softprops/action-gh-release@v1
-      run: echo $PACKAGE_NAME
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          PACKAGE_NAME
+          *.deb
