@@ -37,4 +37,4 @@ jobs:
       uses: taiki-e/setup-cross-toolchain-action@v1
       with:
         target: ${{ matrix.target }}
-    - run: cargo build --workspace --bins --release --target ${{ matrix.target }}
+      run: cargo build --workspace --bins --release --target ${{ matrix.target }}
