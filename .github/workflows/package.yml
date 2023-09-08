@@ -49,8 +49,8 @@ jobs:
         PACKAGE_NAME=`fpm -s dir -t deb -n hello-rust -v 1.0.1 target/release/hello-rust | ruby -e 'puts (eval ARGF.read)[:path]'`
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       run: echo $PACKAGE_NAME
-      # with:
-        # files: |
-          # PACKAGE_NAME
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          PACKAGE_NAME
