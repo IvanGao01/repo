@@ -44,9 +44,12 @@ jobs:
     - name: Compiler
       run: |
         cargo build --workspace --bins --release --target ${{ matrix.target }}
+    - name: Package
+      run: |
+        PACKAGE_NAME=`fpm -s dir -t deb -n hello-rust -v 1.0.1 target/release/hello-rust | ruby -e 'puts (eval ARGF.read)[:path]'`
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          target/${{ matrix.target }}/release/hello-rust
+          PACKAGE_NAME
