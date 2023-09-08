@@ -33,8 +33,10 @@ jobs:
       run: |
         sudo gem install fpm
       shell: bash
-    - name: Cross compile 
+    - name: Preparing the Compilation Environment
       uses: taiki-e/setup-cross-toolchain-action@v1
       with:
         target: ${{ matrix.target }}
-      run: cargo build --workspace --bins --release --target ${{ matrix.target }}
+    - name: Compiler
+      run: |
+        cargo build --workspace --bins --release --target ${{ matrix.target }}
