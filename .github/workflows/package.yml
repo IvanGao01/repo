@@ -1,0 +1,40 @@
+name: Rust
+on:
+  push:
+    # tags:
+    #   - v[0-9]+.*
+    branches: ["main"]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        target:
+          - aarch64-unknown-linux-gnu
+          # - x86_64-unknown-linux-gnu
+    runs-on: ubuntu-latest
+    steps:
+    # - uses: actions/checkout@v3
+    # - name: Install Build Dependencies
+    #   shell: bash
+    #   run: |
+    #     curl -o flatbuffers.zip -sL https://github.com/google/flatbuffers/releases/download/v22.9.29/Linux.flatc.binary.clang++-12.zip
+    #     unzip  flatbuffers.zip
+    #     mv flatc /usr/local/bin
+    # - name: Install Protoc
+    #   shell: bash
+    #   run: |
+    #     sudo apt-get update
+    #     sudo apt-get install -y protobuf-compiler
+    - name: Install fpm
+      run: |
+        sudo gem install fpm
+      shell: bash
+    - name: Cross compile 
+      uses: taiki-e/setup-cross-toolchain-action@v1
+      with:
+        target: ${{ matrix.target }}
+    - run: cargo build --workspace --bins --release --target ${{ matrix.target }}
