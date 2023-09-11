@@ -153,7 +153,7 @@ build_fpm_cmd() {
       --vendor "${VENDOR}" \
       --license "${LICENSE}" \
       --description "${DESCRIPTION}" \
-      --iteration 1 | ruby -e 'puts (eval ARGF.read)[:path]'
+      --iteration 1
 }
 
 # 主函数
