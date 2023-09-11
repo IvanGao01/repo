@@ -28,14 +28,15 @@ jobs:
     #     curl -o flatbuffers.zip -sL https://github.com/google/flatbuffers/releases/download/v22.9.29/Linux.flatc.binary.clang++-12.zip
     #     unzip  flatbuffers.zip
     #     mv flatc /usr/local/bin
-    # - name: Install Protoc
-    #   shell: bash
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install -y protobuf-compiler
+    - name: Install Protoc
+      shell: bash
+      run: |
+        sudo apt-get update
+        # sudo apt-get install -y protobuf-compiler rpm
+        sudo apt-get install -y rpm
     - name: Install build tools
       run: |
-        sudo gem install fpm & sudo apt-get -y rpm
+        sudo gem install fpm
       shell: bash
     - name: Preparing the Compilation Environment
       uses: taiki-e/setup-cross-toolchain-action@v1
