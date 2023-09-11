@@ -1,5 +1,5 @@
 [package]
-name = "hello-rust"
+name = "cnosdb"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,3 +7,19 @@ edition = "2021"
 
 [dependencies]
 ferris-says = "0.3.1"
+
+[[bin]]
+name = "cnosdb-meta"
+path = "src/main.rs"
+
+[[bin]]
+name = "cnosdb-cli"
+path = "src/main.rs"
+
+[[bin]]
+name = "inspect"
+path = "src/main.rs"
+
+[[bin]]
+name = "cnosdb"
+path = "src/main.rs"

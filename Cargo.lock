@@ -3,6 +3,13 @@
 version = 3
 
 [[package]]
+name = "cnosdb"
+version = "0.1.0"
+dependencies = [
+ "ferris-says",
+]
+
+[[package]]
 name = "ferris-says"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -11,13 +18,6 @@ dependencies = [
  "smallvec",
  "textwrap",
  "unicode-width",
-]
-
-[[package]]
-name = "hello-rust"
-version = "0.1.0"
-dependencies = [
- "ferris-says",
 ]
 
 [[package]]
