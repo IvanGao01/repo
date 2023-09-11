@@ -46,11 +46,12 @@ jobs:
         cargo build --workspace --bins --release --target ${{ matrix.target }}
     - name: Package
       run: |
-        ./releng/build_package.sh -n cnosdb -v ${{ github.ref }} -b release -t ${{ matrix.target }}
-        ./releng/build_package.sh -n cnosdb-meta -v ${{ github.ref }} -b release -t ${{ matrix.target }}
+        bash -x ./releng/build_package.sh -n cnosdb -v ${{ github.ref }} -b release -t ${{ matrix.target }}
+        bash -x ./releng/build_package.sh -n cnosdb-meta -v ${{ github.ref }} -b release -t ${{ matrix.target }}
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          *.deb|*.rpm
+          *.deb
+          *.rpm
