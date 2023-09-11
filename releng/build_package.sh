@@ -135,25 +135,25 @@ build_fpm_cmd() {
 
   # 构建包并返回包名
   fpm -t "${output_type}" \
-                         -C "${pkg_temp}" \
-                         -n "${name}" \
-                         -v "${VERSION}" \
-                         --architecture "${arch}" \
-                         -s dir \
-                         --url "${WEBSITE}" \
-                         --before-install ./releng/scripts/"${name}"/before-install.sh \
-                         --after-install ./releng/scripts/"${name}"/after-install.sh \
-                         --after-remove ./releng/scripts/"${name}"/after-remove.sh \
-                         --directories "${LOG_DIR}" \
-                         --directories "${DATA_DIR}" \
-                         --rpm-attr 755,${USER},${GROUP}:${LOG_DIR} \
-                         --rpm-attr 755,${USER},cnosdb:"${DATA_DIR}" \
-                         --config-files /etc/cnosdb/${name}.conf \
-                         --maintainer "${MAINTAINER}" \
-                         --vendor "${VENDOR}" \
-                         --license "${LICENSE}" \
-                         --description "${DESCRIPTION}" \
-                         --iteration 1 | ruby -e 'puts (eval ARGF.read)[:path]')
+      -C "${pkg_temp}" \
+      -n "${name}" \
+      -v "${VERSION}" \
+      --architecture "${arch}" \
+      -s dir \
+      --url "${WEBSITE}" \
+      --before-install ./releng/scripts/"${name}"/before-install.sh \
+      --after-install ./releng/scripts/"${name}"/after-install.sh \
+      --after-remove ./releng/scripts/"${name}"/after-remove.sh \
+      --directories "${LOG_DIR}" \
+      --directories "${DATA_DIR}" \
+      --rpm-attr 755,${USER},${GROUP}:${LOG_DIR} \
+      --rpm-attr 755,${USER},cnosdb:"${DATA_DIR}" \
+      --config-files /etc/cnosdb/${name}.conf \
+      --maintainer "${MAINTAINER}" \
+      --vendor "${VENDOR}" \
+      --license "${LICENSE}" \
+      --description "${DESCRIPTION}" \
+      --iteration 1 | ruby -e 'puts (eval ARGF.read)[:path]'
 }
 
 # 主函数
