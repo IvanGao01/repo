@@ -37,7 +37,7 @@ EOF
 while getopts "n:v:t:b:h" opt; do
   case ${opt} in
     n) NAME=$OPTARG ;;
-    v) VERSION=$OPTARG ;;
+    v) VERSION={$OPTARG#v} ;;
     t) TARGET=$OPTARG ;;
     b) BUILD_OPTION=$OPTARG ;;
     h) usage; exit 0 ;;
