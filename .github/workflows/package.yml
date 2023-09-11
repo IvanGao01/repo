@@ -33,9 +33,9 @@ jobs:
     #   run: |
     #     sudo apt-get update
     #     sudo apt-get install -y protobuf-compiler
-    - name: Install fpm
+    - name: Install build tools
       run: |
-        sudo gem install fpm
+        sudo gem install fpm | sudo apt-get -y rpm
       shell: bash
     - name: Preparing the Compilation Environment
       uses: taiki-e/setup-cross-toolchain-action@v1
