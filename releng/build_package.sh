@@ -134,7 +134,7 @@ build_fpm_cmd() {
   chmod 0644 "${pkg_temp}/etc/cnosdb/${name}.conf"
 
   # 构建包并返回包名
-  local package_name=$(fpm -t "${output_type}" \
+  fpm -t "${output_type}" \
                          -C "${pkg_temp}" \
                          -n "${name}" \
                          -v "${VERSION}" \
@@ -154,8 +154,6 @@ build_fpm_cmd() {
                          --license "${LICENSE}" \
                          --description "${DESCRIPTION}" \
                          --iteration 1 | ruby -e 'puts (eval ARGF.read)[:path]')
-
-  echo "${package_name}"
 }
 
 # 主函数
